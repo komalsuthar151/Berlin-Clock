@@ -14,6 +14,5 @@ public class MinuteFactory implements ClockAbstractFactory{
     @Override
     public Clock createclock() {
         return new Minute(min);
-    }
-    
+    }  
 }

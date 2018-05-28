@@ -27,6 +27,7 @@ public class Second extends Clock {
                 this.sec= pattern_second;
             }
         } else {
+            //throwing IllegalArgument Exception
             throw new IllegalArgumentException();
         }
         return this.sec;

@@ -9,14 +9,13 @@ public class Minute extends Clock {
     //Using values from enum Clock_Pattern
     private String pattern_first = Clock_Pattern.PATTERN_FIRST.toString();
     private String pattern_second = Clock_Pattern.PATTERN_SECOND.toString();
-    private String z_off = Clock_Pattern.OFF.toString();
-    String third = new String(new char[11]).replace("\0", z_off);
-    String forth = new String(new char[4]).replace("\0", z_off);
+    private String off = Clock_Pattern.OFF.toString();
+    String third = new String(new char[11]).replace("\0", off);
+    String forth = new String(new char[4]).replace("\0", off);
 
     public Minute(String min) {
         this.min = min;
     }
-
     //implementing Abstract method from Clock
     @Override
     public String getResult() {
@@ -29,7 +28,7 @@ public class Minute extends Clock {
             //combine 5 min row and 1 min row
             this.min = getThirdrow(minute) + "" + getForthrow(minute);
         } else {
-            //handling IllegalArgumentException
+            //throwing exception for IllegalArgument
             throw new IllegalArgumentException();
         }
         return this.min;
@@ -39,16 +38,15 @@ public class Minute extends Clock {
         StringBuilder third_row = new StringBuilder(third);
         //Checking for the number of min which are multiple of 5
         for (int i = 0; i < min/5; i++) {
-            //set every third light as pattern_first from off
+            //replace every third light as pattern_first from off
             if ((i + 1) % 3 == 0) {
                 third_row.replace(i, i + 1, pattern_first);
             } else {
-                //set off to pattern_second
+                //replace off to pattern_second
                 third_row.replace(i, i + 1, pattern_second);
             }
         }
         return third_row.toString();
-
     }
 
     private String getForthrow(int min) {
@@ -56,10 +54,9 @@ public class Minute extends Clock {
         StringBuilder forth_row = new StringBuilder(forth);
         //Checking for the number of min which are modulo of 5
         for (int i = 0; i < min%5; i++) {
-            //set off to pattern_second
+            //replace off to pattern_second
             forth_row.replace(i, i + 1, pattern_second);
         }
         return forth_row.toString();
     }
-
 }

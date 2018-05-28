@@ -1,10 +1,13 @@
 package berlinclock;
 
 import java.awt.Color;
-import static java.awt.Color.yellow;
 
+
+//Clock is an abstract class that defines the getResult() for all sub classes to be implement
+//contains enum classes for pattern and color
 public abstract class Clock {
 
+    //Enum class for Color 
     public enum Clock_Color {
 
         YELLOW(Color.yellow),
@@ -49,7 +52,6 @@ public abstract class Clock {
         }
     }
 
-    //Method to get result from all subclasses
     public abstract String getResult();
 
     @Override

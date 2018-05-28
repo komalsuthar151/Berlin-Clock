@@ -11,7 +11,6 @@ public class SecondFactory implements ClockAbstractFactory {
     public SecondFactory(String sec) {
         this.sec = sec;
     }
-
     //returning Second class object using createclock()
     @Override
     public Clock createclock() {

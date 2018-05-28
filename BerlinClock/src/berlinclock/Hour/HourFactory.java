@@ -15,5 +15,4 @@ public class HourFactory implements ClockAbstractFactory{
     public Clock createclock() {
         return new Hour(hour);
     }
-    
 }

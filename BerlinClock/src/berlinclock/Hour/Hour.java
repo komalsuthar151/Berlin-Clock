@@ -39,9 +39,7 @@ public class Hour extends Clock {
             //replace off to Red for 5 hour
             first_row.replace(i, i + 1, pattern_first);
         }
-
         return first_row.toString();
-
     }
 
     public String getSecondrow(int hours) {
@@ -54,5 +52,4 @@ public class Hour extends Clock {
         }
         return second_row.toString();
     }
-
 }

@@ -14,12 +14,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
-/**
- *
- * @author Komal
- */
 public class BerlinTest {
 
     public BerlinTest() {
@@ -42,17 +37,16 @@ public class BerlinTest {
     public void tearDown() {
     }
 
-    // Second should set to "O" every two seconds
+    //Second should set to "O" every two seconds
     @Test
     public void testforTwoSeconds() {
         Assert.assertEquals("Y", berlinclock.ClockFactory.getClock(new SecondFactory("0")).getResult());
         Assert.assertEquals("O", berlinclock.ClockFactory.getClock(new SecondFactory("1")).getResult());
         Assert.assertEquals("O", berlinclock.ClockFactory.getClock(new SecondFactory("59")).getResult());
-//        Assert.(, berlinclock.ClockFactory.getClock(new SecondFactory("61")).getResult());
     }
     
-//    for every value multiple of 5 it shoud set to "R" remaining "O" //first row
-//    for every value modulo of 5 it shouls set to "R" remaining "O" //second row
+    //for every value multiple of 5 it shoud set to "R" remaining "O" //first row
+    //for every value modulo of 5 it shouls set to "R" remaining "O" //second row
     @Test
     public void testforHourFirstandSecondrow() {
         Assert.assertEquals("OOOOOOOO", berlinclock.ClockFactory.getClock(new HourFactory("0")).getResult());
@@ -60,6 +54,8 @@ public class BerlinTest {
         Assert.assertEquals("RRRRRRRO", berlinclock.ClockFactory.getClock(new HourFactory("23")).getResult());
     }
 
+    //for every value multiple of 5 Pattern should be "YYRYYR" instead "OOOOOO" //third row
+    //for every value modulo of 5 it shouls set to "Y" remaining "O" //forth row
     @Test
     public void testforMinuteThirdandForthrow() {
         Assert.assertEquals("OOOOOOOOOOOOOOO", berlinclock.ClockFactory.getClock(new MinuteFactory("0")).getResult());
@@ -69,15 +65,17 @@ public class BerlinTest {
        
     }
 
+    //Testing for input String
     @Test
     public void testForMainInput() {
         berlinclock.BerlinClock b = new BerlinClock();
-        Assert.assertEquals("YRROOOOOOYYRYYROOOOOYOOO", b.berlinClockDecode("10:31:40"));
-        Assert.assertEquals("ORRRRRROOYYRYYRYYRYYYYYY", b.berlinClockDecode("22:59:41"));
-        Assert.assertEquals("time is not valid", b.berlinClockDecode("22:59:61")); 
-        Assert.assertEquals("time is not valid", b.berlinClockDecode("bogus"));
+        Assert.assertEquals("YRROOOOOOYYRYYROOOOOYOOO", b.berlinClockEncode("10:31:40"));
+        Assert.assertEquals("ORRRRRROOYYRYYRYYRYYYYYY", b.berlinClockEncode("22:59:41"));
+        Assert.assertEquals("time is not valid", b.berlinClockEncode("22:59:61")); 
+        Assert.assertEquals("time is not valid", b.berlinClockEncode("bogus"));
     }
     
+    //testing for unexpected values
     @Test(expected = IllegalArgumentException.class)
     public void SecondshouldThrow() {
        berlinclock.ClockFactory.getClock(new SecondFactory("61")).getResult();

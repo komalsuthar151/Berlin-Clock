@@ -15,31 +15,18 @@ public class BerlinClock extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        
-        //input from user 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter time:");
-        String s = sc.next();
-        //Berlin bp = new Berlin();
-        //String s = bp.getTime();
-
-        System.out.println(berlinClockDecode(s));
-    }
-
-    
-    public static String berlinClockDecode(String s) {
+    //berlinClockEncode()will take time String as an input and it will return Encoded String pattern  
+    public static String berlinClockEncode(String s) {
         String output = null;
 
-        //Catching the Exception using try catch
         try {
             String[] splitStr = s.split(":");
 
             if (splitStr.length != 3) {
-                //handling ArrayIndexOutOfBoundsException
+                //If splitStr.length is not equals to 3, throw below exception
                 throw new ArrayIndexOutOfBoundsException();
             }
-            //abstract factory class will return sub class based on the input factory class 
+            //Executing getClock() from ClockFactory, which takes ClockAbstractFactory as an argument and returns Clock object
             Clock ss = berlinclock.ClockFactory.getClock(new SecondFactory(splitStr[2]));
             Clock hh = berlinclock.ClockFactory.getClock(new HourFactory(splitStr[0]));
             Clock min = berlinclock.ClockFactory.getClock(new MinuteFactory(splitStr[1]));
@@ -47,6 +34,8 @@ public class BerlinClock extends JFrame {
             //combine output from all different abstract factories 
             output = ss.toString() + hh.toString() + min.toString();
         } catch (Exception e) {
+            
+            //catching exception for ArrayIndexOutOfBounds and IllegalArgument and showing the below output
             output = "time is not valid";
         }
         return output;
