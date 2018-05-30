@@ -1,0 +1,260 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package berlinclock;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Komal
+ */
+public class BerlinClockUI extends javax.swing.JFrame {
+
+    /**
+     * Creates new form BerlinClockUI
+     */
+    String s = null;
+    String output = null;
+    Color yellow = Clock.Clock_Color.YELLOW.getValue();
+    Color red = Clock.Clock_Color.RED.getValue();
+    Color gray = Clock.Clock_Color.GRAY.getValue();
+
+    public BerlinClockUI() {
+        initComponents();
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
+        setSize(500, 500);
+        setVisible(true);
+    }
+
+    public void paint(Graphics g) {
+
+        s = time.getText();
+        char r = 'R';
+        char o = 'O';
+        char y = 'Y';
+        super.paint(g);
+
+        try {
+            if (s != null) {
+           
+                BerlinClock bclock = new BerlinClock();
+                output = bclock.berlinClockEncode(s);
+                System.out.println(output);
+                
+                String sec = output.substring(0, 1);
+                for (int i = 0; i < sec.length(); i++) {
+                    if (y == sec.charAt(i)) {
+                        g.setColor(yellow);
+                        g.drawRect(230, 200, 30, 30);
+                        g.fillRect(230, 200, 30, 30);
+                    } else if (o == sec.charAt(i)) {
+                        g.setColor(gray);
+                        g.drawRect(230, 200, 30, 30);
+                        g.fillRect(230, 200, 30, 30);
+                    }
+                }
+                String text1 = output.substring(1, 5);
+
+                for (int i = 0; i < text1.length(); i++) {
+                    if (r == text1.charAt(i)) {
+                        g.setColor(red);
+                        g.drawRect(130 + (i * 65), 250, 30, 30);
+                        g.fillRect(130 + (i * 65), 250, 30, 30);
+                  } else if (o == text1.charAt(i)) {
+                        g.setColor(gray);
+                        g.drawRect(130 + (i * 65), 250, 30, 30);
+                        g.fillRect(130 + (i * 65), 250, 30, 30);
+                    }
+                }
+
+                String text2 = output.substring(5, 9);
+                for (int i = 0; i < text2.length(); i++) {
+                    if (r == text2.charAt(i)) {
+                        g.setColor(red);
+                        g.drawRect(130 + (i * 65), 300, 30, 30);
+                        g.fillRect(130 + (i * 65), 300, 30, 30);
+                    } else if (o == text2.charAt(i)) {
+                        g.setColor(gray);
+                        g.drawRect(130 + (i * 65), 300, 30, 30);
+                        g.fillRect(130 + (i * 65), 300, 30, 30);
+                    }
+                }
+
+                String text3 = output.substring(9, 20);
+
+                for (int i = 0; i < text3.length(); i++) {
+                    if (y == text3.charAt(i)) {
+                        g.setColor(yellow);
+                        g.drawRect(136 + (i * 20), 350, 15, 15);
+                        g.fillRect(136 + (i * 20), 350, 15, 15);
+                    } else if (o == text3.charAt(i)) {
+                        g.setColor(gray);
+                        g.drawRect(136 + (i * 20), 350, 15, 15);
+                        g.fillRect(136 + (i * 20), 350, 15, 15);
+                    } else if (r == text3.charAt(i)) {
+                        g.setColor(red);
+                        g.drawRect(136 + (i * 20), 350, 15, 15);
+                        g.fillRect(136 + (i * 20), 350, 15, 15);
+                    }
+                }
+
+                String text4 = output.substring(20,24);
+                for (int i = 0; i < text4.length(); i++) {
+                    if (y == text4.charAt(i)) {
+                        g.setColor(red);
+                        g.drawRect(130 + (i * 65), 380, 30, 30);
+                        g.fillRect(130 + (i * 65), 380, 30, 30);
+                    } else if (o == text4.charAt(i)) {
+                        g.setColor(gray);
+                        g.drawRect(130 + (i * 65), 380, 30, 30);
+                        g.fillRect(130 + (i * 65), 380, 30, 30);
+                    }
+                }
+
+            } else {
+                System.out.println("Please Enter time");
+                throw new NullPointerException();
+            }
+        } catch (Exception e) {
+          JOptionPane.showMessageDialog(jPanel1,"Enter Valid time");
+        }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        time = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("BerlinClock");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLocation(new java.awt.Point(200, 200));
+        setMaximumSize(new java.awt.Dimension(500, 500));
+        setMinimumSize(new java.awt.Dimension(500, 500));
+        getContentPane().setLayout(null);
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setMaximumSize(new java.awt.Dimension(500, 500));
+        jPanel1.setMinimumSize(new java.awt.Dimension(500, 500));
+        jPanel1.setPreferredSize(new java.awt.Dimension(500, 500));
+        jPanel1.setLayout(null);
+
+        time.setText("00:00:00");
+        jPanel1.add(time);
+        time.setBounds(30, 40, 130, 30);
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setText("Show Time");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(40, 90, 110, 23);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Enter Time");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(30, 20, 80, 17);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 600, 600);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        try {
+            s = time.getText();
+            if (s.equals(null)) {
+                throw new NullPointerException();
+            }
+             
+            repaint();
+        } catch (Exception e) {
+            System.out.println("Please Enter time");
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+
+         s = time.getText();
+            if (s == null) {
+                JOptionPane.showMessageDialog(jPanel1,"Enter time");
+                throw new NullPointerException();
+            }
+           
+            repaint();
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(BerlinClockUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(BerlinClockUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(BerlinClockUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(BerlinClockUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new BerlinClockUI().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField time;
+    // End of variables declaration//GEN-END:variables
+}

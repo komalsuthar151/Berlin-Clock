@@ -10,9 +10,9 @@ public abstract class Clock {
     //Enum class for Color 
     public enum Clock_Color {
 
-        YELLOW(Color.yellow),
+        YELLOW(Color.YELLOW),
         RED(Color.RED),
-        GRAY(Color.gray);
+        GRAY(Color.GRAY);
 
         private Color value;
 
